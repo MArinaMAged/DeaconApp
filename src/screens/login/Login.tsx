@@ -4,8 +4,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { useLogin } from '@/hooks/domain/login/uselogin';
 import ErrorModal from '@/components/atoms/ErrorModal/ErrorModal';
 import { useNavigation } from '@react-navigation/native';
-// import Icon from 'react-native-vector-icons/FontAwesome6';
-
+// import { Icon } from 'react-native-vector-icons/Icon';
+// import {Icon} from 'react-native-vector-icons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const LoginScreen = () => {
   const [isCodeMode, setIsCodeMode] = useState(true);
   const { useLoginQuery } = useLogin();
@@ -52,10 +53,11 @@ const LoginScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
         <View style={styles.logoContainer}>
-          {/* <Icon color="white" name="cross" size={40} /> */}
+          <Icon color="black" name="music" size={40} />
+          <Icon color="black" name="cross" size={40} />
         </View>
 
-        <Text style={styles.title}>Welcome Little deacon ❤️!</Text>
+        <Text style={styles.title}>Welcome Little Deacon ❤️!</Text>
 
         <TouchableOpacity 
           onPress={() => setIsCodeMode(!isCodeMode)} 
@@ -183,7 +185,7 @@ const styles = StyleSheet.create({
     padding: 16
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     borderRadius: 24,
     padding: 32,
     alignItems: 'center',
@@ -195,14 +197,16 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     backgroundColor: '#9B6FB4',
-    borderRadius: 50,
+    borderRadius: 30,
     padding: 16,
-    marginBottom: 24
+    marginBottom: 20,
+    flexDirection:'row'
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4A2D5B',
+    // color: '#4A2D5B',
+    color: '#9B6FB4',
     marginBottom: 24,
     textAlign: 'center'
   },
