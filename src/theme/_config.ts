@@ -16,12 +16,18 @@ const colorsLight = {
   gray50: '#EFEFEF',
   purple500: '#44427D',
   purple100: '#E1E1EF',
+  inActiveIcon: "#7D7D7D",
+  activeIcon: "#002788",
+  lightGray: "#F9F9F9",
   purple50: '#1B1A23',
 } as const;
 
 const colorsDark = {
   skeleton: '#303030',
   red500: '#C13333',
+  inActiveIcon: "#7D7D7D",
+  activeIcon: "#002788",
+  lightGray: "#F9F9F9",
   gray800: '#E0E0E0',
   gray400: '#969696',
   gray200: '#BABABA',
