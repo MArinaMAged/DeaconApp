@@ -63,7 +63,7 @@ const AttendanceScreen: FunctionComponent<AttendanceScreenProps> = () => {
       <View style={styles.container}>
         {/* Header */}
         <View style={styles.headerContainer}>
-      <View style={styles.iconBackContainer}>
+       <View style={styles.iconBackContainer}>
         </View>
         <View style={styles.header}>
           <View style={styles.titleContainer}>

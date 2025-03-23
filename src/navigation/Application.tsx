@@ -63,9 +63,9 @@ const AuthNavigator = () => (
   </AuthStack.Navigator>
 );
 const ServantBottomTabs = () => (
-  <ServantTab.Navigator screenOptions={(route)=>({ headerShown: false ,  tabBarActiveTintColor: '#4A2D5B',
+  <ServantTab.Navigator screenOptions={(route)=>({ headerShown: false ,  tabBarActiveTintColor: 'black',
     tabBarInactiveTintColor: 'grey', tabBarIcon: ({ focused, color }) => renderTabIcon(route?.route, focused, color),  
-    
+    //tabBarActiveTintColor: '#4A2D5B'
   tabBarStyle: {
     // backgroundColor: isDarkMode ? palette.black : palette.lightGray,
     backgroundColor: 'white',

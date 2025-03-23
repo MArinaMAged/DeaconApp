@@ -15,13 +15,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 interface MaterialScreenProps {
     
 }
- 
-// const MaterialScreen: FunctionComponent<MaterialScreenProps> = () => {
-//     return (  <SafeScreen>
-//         <Text>marina</Text>
-//     </SafeScreen>);
-// }
- 
 
 
 const MaterialsScreen: FunctionComponent<MaterialScreenProps>  = () => {
