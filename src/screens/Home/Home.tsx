@@ -83,24 +83,12 @@ const formatDate = (date: Date) => {
                 <View style={styles.itemLeft}>
                   <Icon color="#9B6FB4" name="clock-outline" size={24} />
                   <View style={styles.itemTextContainer}>
-                    <Text style={styles.itemTitle}>Last Session</Text>
+                    <Text style={styles.itemTitle}>Other Session</Text>
                     {/* <Text style={styles.itemSubtext}>March 15, 2024</Text> */}
                   </View>
                 </View>
                 <Text style={styles.presentText}>Present</Text>
                 <Icon color="#9B6FB4" name="calendar" onPress={handleHeaderSelected}  size={24}/>
-              </View>
-    
-              <View style={styles.itemContainer}>
-                <View style={styles.itemLeft}>
-                  <Icon color="#9B6FB4" name="clock-outline" size={24} />
-                  <View style={styles.itemTextContainer}>
-                    <Text style={styles.itemTitle}>Next Session</Text>
-                    {/* <Text style={styles.itemSubtext}>March 22, 2024</Text> */}
-                  </View>
-                </View>
-                <Text style={styles.upcomingText}>Upcoming</Text>
-                <Icon color="#9B6FB4" name="calendar" size={24} />
               </View>
     
               {/* Progress Bar */}
@@ -111,7 +99,7 @@ const formatDate = (date: Date) => {
                 </View>
               </View>
     
-              <TouchableOpacity style={styles.viewAllButton}>
+              <TouchableOpacity onPress={() => navigation.navigate('Attendance')} style={styles.viewAllButton}>
                 <Text style={styles.viewAllText}>Handle Today`s Session Attendance</Text>
                 <Icon color="#9B6FB4" name="arrow-right" size={20} />
               </TouchableOpacity>
@@ -121,7 +109,9 @@ const formatDate = (date: Date) => {
             <View style={styles.card}>
               <View style={styles.cardHeader}>
                 <View style={styles.iconContainer}>
-                  <Icon color="#fff" name="book" size={24} />
+                  {/* <Icon color="#fff" name="book" size={24} /> */}
+                              <Icon color="#fff" name="music" size={24} />
+                  
                 </View>
                 <Text style={styles.cardTitle}>Materials</Text>
                 <Text style={styles.itemCount}>12 items</Text>
@@ -150,7 +140,7 @@ const formatDate = (date: Date) => {
                 <Icon color="#9B6FB4" name="chevron-right" size={24} />
               </TouchableOpacity>
     
-              <TouchableOpacity style={styles.viewAllButton}>
+              <TouchableOpacity onPress={() => navigation.navigate('Material')} style={styles.viewAllButton}>
                 <Text style={styles.viewAllText}>View All Materials</Text>
                 <Icon color="#9B6FB4" name="arrow-right" size={20} />
               </TouchableOpacity>

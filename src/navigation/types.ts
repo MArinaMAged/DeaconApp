@@ -10,6 +10,8 @@ export type RootStackParamList = {
   // [Paths.Login]: undefined;
   [Paths.Home]: {type?: UserType};
   [Paths.Profile]:{type?: UserType};
+  [Paths.Attendance]:{date?:Date};
+  [Paths.Material]:undefined;
 };
 // export type RootStackParamList = {
 //   Auth: undefined;
@@ -28,7 +30,9 @@ export type AuthStackParamList = {
 };
 
 export type ServantBottomTabParamList = {
+  Attendance: {date?:Date};
   Home: {title?:string; type:UserType };
+  Material:undefined;
   Profile: {title?:string; type:UserType };
   // Add more servant-specific screens
 };

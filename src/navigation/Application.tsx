@@ -10,10 +10,12 @@ import { useTheme } from '@/theme';
 import { Paths } from '@/navigation/paths';
 
 // import { Login, Startup } from '@/screens';
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { 
+  Attendance,
   Login, 
+  Material, 
   ServantHome,
   ServantProfile,
   StudentHome,
@@ -169,6 +171,24 @@ const userStore=storage?.getString('@user_data')? JSON.parse(storage?.getString(
                   initialParams={{ type: user?.roleName ||  storage?.getString('@user_data')?.user?.roleName }} 
                   name={Paths.Home}
                 />
+                  <ServantTab.Screen 
+                    component={Attendance} 
+                    name={Paths.Attendance}
+                    options={{
+                      title: 'Attendance',
+                      // type: 'Servant',
+                      // Add your tab icon here
+                    }}
+                  />
+                  <ServantTab.Screen 
+                    component={Material} 
+                    name="Material"
+                    options={{
+                      title: 'Material',
+                      // type: 'Servant',
+                      // Add your tab icon here
+                    }}
+                  />
               {/* {user?.roleName === 'Servant' ? (
                 <Stack.Screen 
                   component={ServantBottomTabs} 
