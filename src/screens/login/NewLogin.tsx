@@ -67,7 +67,7 @@ const LoginScreen = () => {
                  <Icon color="black" name="cross-bolnisi" size={40} />
                </View>
         {/* <Text style={styles.welcomeText}>Welcome back! Please login to continue</Text> */}
-         <Text style={styles.welcomeText}>Welcome Little Deacon ❤️!</Text>
+         <Text style={styles.welcomeText}>Welcome Little Deacon 💜!</Text>
         <View style={styles.tabContainer}>
           <TouchableOpacity 
             onPress={() => setActiveTab('code')}

@@ -1,7 +1,9 @@
+import { useGetClasses } from '@/hooks/domain/getClasses/useGetClasses';
 import type { ServantBottomTabParamList, StudentBottomTabParamList } from '@/navigation/types';
 import useAuth from '@/theme/hooks/useAuth';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
+import { use } from 'i18next';
 import React from 'react';
 import type { FunctionComponent } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
@@ -15,13 +17,18 @@ type HomeScreenNavigationProp = StackNavigationProp<ServantBottomTabParamList | 
 
 const HomeScreen: FunctionComponent<HomeScreenProps> = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
-  
+  const { user } = useAuth();
+  const { useGetClassesQuery } = useGetClasses();
+console.log(user?.roleName, 'user in home screen')
+  const { isError, isLoading, isSuccess, error, data: response } = useGetClassesQuery({});
+
+console.log({isError, isLoading, isSuccess, error, response }, '<<<<<')
   return (
     <ScrollView style={styles.container}>
       {/* Welcome Header */}
       <View style={styles.header}>
         <Text style={styles.welcomeText}>
-          Welcome, Our Little Deacon ❤️
+          Welcome, Our Little Deacon 💜
         </Text>
       </View>
 

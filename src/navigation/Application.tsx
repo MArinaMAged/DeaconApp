@@ -146,7 +146,7 @@ const StudentBottomTabs = () => (
 function ApplicationNavigator() {
   const { variant, navigationTheme } = useTheme();
   const { user } = useAuth();
-const userStore=storage?.getString('@user_data')? JSON.parse(storage?.getString('@user_data')??''): ''
+const userStore= storage?.getString('@user_data')? JSON.parse(storage?.getString('@user_data')??''): ''
 
   const isAuthenticated =user?.access_token || userStore?.access_token ?true:false
   const isServant =user?.roleName === 'Servant' || userStore?.roleName  === 'Servant'?true:false
