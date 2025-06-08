@@ -8,7 +8,6 @@ import { useContext } from 'react';
 export const LoginServices = {
   fetchOne: async (userName?: string, password?: string, code?:string) => {
     try {
-      // console.log('aloooo', userName,password, code)
     const requestData = userName && password 
     ? { userName, password }
     : { code };

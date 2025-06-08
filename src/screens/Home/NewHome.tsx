@@ -1,4 +1,5 @@
-import { useGetClasses } from '@/hooks/domain/getClasses/useGetClasses';
+import { useGetClasses } from '@/hooks/domain/classes/getClasses/useGetClasses';
+import { Paths } from '@/navigation/paths';
 import type { ServantBottomTabParamList, StudentBottomTabParamList } from '@/navigation/types';
 import useAuth from '@/theme/hooks/useAuth';
 import { useNavigation } from '@react-navigation/native';
@@ -19,10 +20,10 @@ const HomeScreen: FunctionComponent<HomeScreenProps> = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const { user } = useAuth();
   const { useGetClassesQuery } = useGetClasses();
-console.log(user?.roleName, 'user in home screen')
+  console.log(user?.roleName, 'user in home screen')
   const { isError, isLoading, isSuccess, error, data: response } = useGetClassesQuery({});
 
-console.log({isError, isLoading, isSuccess, error, response }, '<<<<<')
+  console.log({ isError, isLoading, isSuccess, error, response }, '<<<<<')
   return (
     <ScrollView style={styles.container}>
       {/* Welcome Header */}
@@ -35,7 +36,7 @@ console.log({isError, isLoading, isSuccess, error, response }, '<<<<<')
       {/* Main Content Container */}
       <View style={styles.content}>
         {/* Attendance Card */}
-        <View style={styles.card}>
+        {user?.roleName.toLocaleLowerCase() == 'servant' && <View style={styles.card}>
           <View style={styles.cardHeader}>
             <View style={styles.iconContainer}>
               <Icon color="#fff" name="account-group" size={24} />
@@ -63,14 +64,14 @@ console.log({isError, isLoading, isSuccess, error, response }, '<<<<<')
           </View>
 
           {/* Handle Today's Session Button */}
-          <TouchableOpacity 
-            onPress={() => navigation.navigate('Attendance')}
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Paths.Attendance)}
             style={styles.handleSessionButton}
           >
             <Text style={styles.handleSessionText}>Handle Today's Session Attendance</Text>
             <Icon color="#9B6FB4" name="chevron-right" size={24} />
           </TouchableOpacity>
-        </View>
+        </View>}
 
         {/* Materials Card */}
         <View style={styles.card}>
@@ -105,8 +106,8 @@ console.log({isError, isLoading, isSuccess, error, response }, '<<<<<')
             </View>
             <Icon color="#9B6FB4" name="chevron-right" size={24} />
           </TouchableOpacity>
-          <TouchableOpacity 
-            onPress={() => navigation.navigate('Material')}
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Paths.Material)}
             style={styles.handleSessionButton}
           >
             <Text style={styles.handleSessionText}>GO TO MATERIALS</Text>

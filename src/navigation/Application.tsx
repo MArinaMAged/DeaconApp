@@ -218,7 +218,7 @@ function ApplicationNavigator() {
               />
               <Stack.Screen 
                 component={Material} 
-                name="Material"
+                name={Paths.Material}
                 options={{
                   headerShown: false,
                   title: 'Material',

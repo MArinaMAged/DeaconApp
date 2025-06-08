@@ -31,23 +31,23 @@ interface Material {
   type: string;
 }
 
-// Setup TrackPlayer
-const setupPlayer = async () => {
-  try {
-    await TrackPlayer.setupPlayer();
-    await TrackPlayer.updateOptions({
-      stopWithApp: true,
-      capabilities: [
-        TrackPlayer.CAPABILITY_PLAY,
-        TrackPlayer.CAPABILITY_PAUSE,
-        TrackPlayer.CAPABILITY_STOP,
-        TrackPlayer.CAPABILITY_SEEK_TO
-      ]
-    });
-  } catch (error) {
-    console.log('Error setting up player:', error);
-  }
-};
+// // Setup TrackPlayer
+// const setupPlayer = async () => {
+//   try {
+//     await TrackPlayer.setupPlayer();
+//     await TrackPlayer.updateOptions({
+//       stopWithApp: true,
+//       capabilities: [
+//         TrackPlayer.CAPABILITY_PLAY,
+//         TrackPlayer.CAPABILITY_PAUSE,
+//         TrackPlayer.CAPABILITY_STOP,
+//         TrackPlayer.CAPABILITY_SEEK_TO
+//       ]
+//     });
+//   } catch (error) {
+//     console.log('Error setting up player:', error);
+//   }
+// };
 
 const MaterialsScreen: FunctionComponent<MaterialScreenProps> = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -59,7 +59,7 @@ const MaterialsScreen: FunctionComponent<MaterialScreenProps> = () => {
   const playbackState = usePlaybackState();
   const progress = useProgress();
   
-  // Materials data with audio URLs
+  // // Materials data with audio URLs
   const materials: Material[] = [
     {
       id: '1',
@@ -84,18 +84,18 @@ const MaterialsScreen: FunctionComponent<MaterialScreenProps> = () => {
     },
   ];
 
-  // Initialize track player
+ // Initialize track player
   useEffect(() => {
-    setupPlayer().then(() => {
-      setIsPlayerReady(true);
-    });
+    // setupPlayer().then(() => {
+    //   setIsPlayerReady(true);
+    // });
     
-    return () => {
-      TrackPlayer.destroy();
-    };
+    // return () => {
+    //   TrackPlayer.destroy();
+    // };
   }, []);
 
-  // Track player events
+  // // Track player events
   useTrackPlayerEvents([Event.PlaybackTrackChanged, Event.PlaybackState], async (event) => {
     if (event.type === Event.PlaybackTrackChanged && event.nextTrack !== null) {
       const track = await TrackPlayer.getTrack(event.nextTrack);
@@ -111,7 +111,7 @@ const MaterialsScreen: FunctionComponent<MaterialScreenProps> = () => {
     }
   });
 
-  // Play audio function
+  // // Play audio function
   const playAudio = async (material: Material) => {
     if (!isPlayerReady) {return;}
     
@@ -266,17 +266,18 @@ const MaterialsScreen: FunctionComponent<MaterialScreenProps> = () => {
               
               <TouchableOpacity 
                 onPress={() => {
-                  if (playbackState === State.Playing) {
-                    TrackPlayer.pause();
-                  } else {
-                    TrackPlayer.play();
-                  }
+                  // if (playbackState === State.Playing) {
+                  //   TrackPlayer.pause();
+                  // } else {
+                  //   TrackPlayer.play();
+                  // }
                 }}
                 style={[styles.controlButton, styles.playPauseButton]}
               >
                 <Icon 
                   color="#fff" 
-                  name={playbackState === State.Playing ? "pause" : "play"} 
+                  // name={playbackState === State.Playing ? "pause" : "play"} 
+                  name={"play"} 
                   size={28} 
                 />
               </TouchableOpacity>
