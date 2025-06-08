@@ -8,6 +8,8 @@ import { ThemeProvider } from '@/theme';
 import ApplicationNavigator from '@/navigation/Application';
 
 import '@/translations';
+import { AuthContext, AuthProvider } from './hooks/AuthContext/AuthContext';
+import { useContext } from 'react';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,11 +25,16 @@ export const queryClient = new QueryClient({
 export const storage = new MMKV();
 
 function App() {
+    // const { user } = useContext(AuthContext);
+  // console.log('aloooo', user)
+   
   return (
     <GestureHandlerRootView>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider storage={storage}>
-          <ApplicationNavigator />
+        <AuthProvider>
+          <ApplicationNavigator/>
+          </AuthProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>

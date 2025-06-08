@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { useLogin } from '@/hooks/domain/login/uselogin';
 import ErrorModal from '@/components/atoms/ErrorModal/ErrorModal';
 import { useNavigation } from '@react-navigation/native';
-// import Icon from 'react-native-vector-icons/FontAwesome6';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Paths } from '@/navigation/paths';
+import type { StackNavigationProp } from '@react-navigation/stack/lib/typescript/src/types';
+import type { AuthStackParamList } from '@/navigation/types';
+import { AuthContext } from '@/hooks/AuthContext/AuthContext';
+type LoginScreenNavigationProp = StackNavigationProp<AuthStackParamList, 'Login'>;
 
 const LoginScreen = () => {
   const [isCodeMode, setIsCodeMode] = useState(true);
@@ -12,7 +17,7 @@ const LoginScreen = () => {
   const [data, setData]= useState({})
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const {navigate} =useNavigation()
+  const navigation = useNavigation<LoginScreenNavigationProp>();
   // const {   isLoading, isError, error, isSuccess} = useLoginQuery();
   //640268
   const { control, handleSubmit, formState: { errors } } = useForm({
@@ -22,15 +27,23 @@ const LoginScreen = () => {
       code: ''
     }
   });
-  const {isError, isLoading, isSuccess, error }= useLoginQuery(data);
-  React.useEffect(() => {
-    if (isError) {
+  const {isError, isLoading, isSuccess, error , data:response}= useLoginQuery(data);
 
+      const { login } = useContext(AuthContext);
+  console.log({isError,isLoading , isSuccess, error})
+
+  React.useEffect(() => {
+    if(isSuccess){
+      setShowErrorModal(false);
+      login(response)
+      navigation.navigate('home')
+
+    }
+    
+    if (isError) {
       setErrorMessage(error?.message || 'An error occurred during login. Please try again.');
       setShowErrorModal(true);
-    }else if(isSuccess){
-    // navigate()
-    }
+    } 
   }, [isError, error, isSuccess]);
 
   const handleCloseErrorModal = () => {
@@ -52,10 +65,11 @@ const LoginScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.card}>
         <View style={styles.logoContainer}>
-          {/* <Icon color="white" name="cross" size={40} /> */}
+          {/* <Icon color="black" name="music" size={40} /> */}
+          <Icon color="black" name="cross-bolnisi" size={40} />
         </View>
 
-        <Text style={styles.title}>Welcome Little deacon ❤️!</Text>
+        <Text style={styles.title}>Welcome Little Deacon ❤️!</Text>
 
         <TouchableOpacity 
           onPress={() => setIsCodeMode(!isCodeMode)} 
@@ -165,11 +179,11 @@ const LoginScreen = () => {
             <View key={i} style={styles.dot} />
           ))}
         </View>
-        <ErrorModal
+       {isError&& <ErrorModal
         errorMessage={errorMessage}
         onClose={handleCloseErrorModal}
         visible={showErrorModal}
-      />
+      />}
       </View>
     </SafeAreaView>
   );
@@ -183,9 +197,10 @@ const styles = StyleSheet.create({
     padding: 16
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     borderRadius: 24,
     padding: 32,
+    marginHorizontal:10,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -195,14 +210,16 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     backgroundColor: '#9B6FB4',
-    borderRadius: 50,
+    borderRadius: 30,
     padding: 16,
-    marginBottom: 24
+    marginBottom: 20,
+    flexDirection:'row'
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#4A2D5B',
+    // color: '#4A2D5B',
+    color: '#9B6FB4',
     marginBottom: 24,
     textAlign: 'center'
   },
